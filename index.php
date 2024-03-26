@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h2>Loan Application Form</h2>
-        <form action="">
+        <form id="loanForm">
             <div class="form-group">
                 <label for="name">Payment Number:</label>
                 <input type="number" class="form-control" id="Pay_num" name="pay_num" required>
@@ -37,7 +37,42 @@
             <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
 
-        
+        <h2>Loan Data</h2>
+        <table id="loanDataTable" class="table">
+            <thead>
+                <tr>
+                    <th>Payment Number</th>
+                    <th>Loan Balance</th>
+                    <th>Payment</th>
+                    <th>Principal</th>
+                    <th>Interest</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table body will be dynamically populated -->
+            </tbody>
+        </table>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#loanForm').submit(function(e){
+                e.preventDefault(); // Prevent form submission
+
+                // Retrieve form data
+                var pay_num = $('#Pay_num').val();
+                var loan_bl = $('#loan_bl').val();
+                var payment = $('#payment').val();
+                var principle = $('#principle').val();
+                var interest = $('#interest').val();
+
+                // Append data to table
+                $('#loanDataTable tbody').append('<tr><td>'+pay_num+'</td><td>'+loan_bl+'</td><td>'+payment+'</td><td>'+principle+'</td><td>'+interest+'</td></tr>');
+
+                // Clear form fields
+                $('#loanForm')[0].reset();
+            });
+        });
+    </script>
 </body>
 </html>
